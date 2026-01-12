@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+:root {
+  /* Premium Color Palette */
+  --primary: 220 90% 56%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 260 80% 65%;
+  --accent: 170 80% 50%;
+  --success: 142 76% 45%;
+  --warning: 38 92% 50%;
+  --danger: 0 84% 60%;
+  
+  /* Neutral Scale */
+  --background: 220 20% 97%;
+  --foreground: 220 25% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  --muted: 220 15% 90%;
+  --muted-foreground: 220 15% 45%;
+  --border: 220 15% 88%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(220 90% 56%), hsl(260 80% 65%));
+  --gradient-accent: linear-gradient(135deg, hsl(260 80% 65%), hsl(170 80% 50%));
+  --gradient-success: linear-gradient(135deg, hsl(142 76% 45%), hsl(170 80% 50%));
+  --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(38 92% 50%));
+  
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  
+  /* Animations */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+.dark {
+  --background: 220 25% 8%;
+  --foreground: 0 0% 95%;
+  --card: 220 25% 12%;
+  --card-foreground: 0 0% 95%;
+  --muted: 220 20% 18%;
+  --muted-foreground: 220 15% 60%;
+  --border: 220 20% 20%;
+  
+  --glass-bg: rgba(30, 35, 50, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Premium Card Hover */
+.card-hover {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Gradient Border */
+.gradient-border {
+  position: relative;
+  background: hsl(var(--card));
+  border-radius: 16px;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-primary);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Pulse Animation for Live Indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Shimmer Loading Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 0%,
+    hsl(var(--muted-foreground) / 0.1) 50%,
+    hsl(var(--muted)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground) / 0.5);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
+}
+
+/* Number Animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Chart Container */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Real-time Indicator */
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsl(var(--success));
+}
+
+.live-indicator::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--success));
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Sidebar */
+.sidebar {
+  background: hsl(var(--card));
+  border-right: 1px solid hsl(var(--border));
+  transition: width var(--transition-normal);
+}
+
+.sidebar-collapsed {
+  width: 72px;
+}
+
+.sidebar-expanded {
+  width: 260px;
+}
+
+/* Nav Item */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-item:hover {
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+
+.nav-item.active {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+/* Metric Card Variants */
+.metric-positive {
+  color: hsl(var(--success));
+}
+
+.metric-negative {
+  color: hsl(var(--danger));
+}
+
+.metric-neutral {
+  color: hsl(var(--muted-foreground));
+}
