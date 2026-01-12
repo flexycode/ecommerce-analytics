@@ -35,9 +35,6 @@
 ![Dashboard Overview](public/screenshots/dashboard.png)
 *Real-time dashboard with metrics cards, sales charts, recent orders, low stock alerts, and AI predictions*
 
-### Demo Video
-![Dashboard Demo](public/screenshots/dashboard-demo.webp)
-*Interactive demo showing navigation and dashboard features*
 
 ## �🛠️ Technology Stack
 
